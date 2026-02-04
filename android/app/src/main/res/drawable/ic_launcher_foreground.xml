@@ -4,16 +4,53 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    <path
-        android:fillColor="#2196F3"
-        android:pathData="M0,0h108v108h-108z" />
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M54,27C39.64,27 28,38.64 28,53s11.64,26 26,26 26,-11.64 26,-26 -11.64,-26 -26,-26zM54,73C44.06,73 36,64.94 36,55s8.06,-18 18,-18 18,8.06 18,18 -8.06,18 -18,18z" />
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M50,44h8v22h-8z" />
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M44,50h20v8h-20z" />
+    
+    <group
+        android:scaleX="0.6"
+        android:scaleY="0.6"
+        android:translateX="21.6"
+        android:translateY="21.6">
+        
+        <!-- Palm -->
+        <path
+            android:fillColor="#FF6B6B"
+            android:pathData="M35,75 L35,85 Q35,95 45,95 L63,95 Q73,95 73,85 L73,75 Z"/>
+        
+        <!-- Thumb -->
+        <path
+            android:fillColor="#FF6B6B"
+            android:pathData="M28,65 L28,75 L35,75 L35,60 Q35,50 28,50 Q21,50 21,57 L21,65 Z"/>
+        
+        <!-- Index finger -->
+        <path
+            android:fillColor="#FF6B6B"
+            android:pathData="M38,25 Q38,18 43,18 Q48,18 48,25 L48,75 L38,75 Z"/>
+        
+        <!-- Middle finger -->
+        <path
+            android:fillColor="#FF6B6B"
+            android:pathData="M50,15 Q50,8 55,8 Q60,8 60,15 L60,75 L50,75 Z"/>
+        
+        <!-- Ring finger -->
+        <path
+            android:fillColor="#FF6B6B"
+            android:pathData="M62,20 Q62,13 67,13 Q72,13 72,20 L72,75 L62,75 Z"/>
+        
+        <!-- Pinky -->
+        <path
+            android:fillColor="#FF6B6B"
+            android:pathData="M74,30 Q74,23 79,23 Q84,23 84,30 L84,75 L74,75 Z"/>
+        
+        <!-- Hand outlines for definition -->
+        <path
+            android:strokeColor="#D63031"
+            android:strokeWidth="2"
+            android:fillColor="@android:color/transparent"
+            android:pathData="M28,65 L28,75 L35,75 L35,60 Q35,50 28,50 Q21,50 21,57 L21,65 Z
+                           M38,25 Q38,18 43,18 Q48,18 48,25 L48,75
+                           M50,15 Q50,8 55,8 Q60,8 60,15 L60,75
+                           M62,20 Q62,13 67,13 Q72,13 72,20 L72,75
+                           M74,30 Q74,23 79,23 Q84,23 84,30 L84,75
+                           M35,75 L35,85 Q35,95 45,95 L63,95 Q73,95 73,85 L73,75"/>
+    </group>
 </vector>
