@@ -5,23 +5,23 @@ import 'package:fms_go_app/main.dart';
 void main() {
   group('FMS Go App - UI Tests', () {
     testWidgets('App launches and loads WebView', (WidgetTester tester) async {
-      // Запустить приложение
+      // Launch application
       await tester.pumpWidget(const FMSGoApp());
 
-      // Проверить, что приложение запустилось
+      // Verify app launched
       expect(find.byType(FMSGoApp), findsOneWidget);
 
-      // Проверить, что есть SafeArea
+      // Check SafeArea exists
       expect(find.byType(SafeArea), findsOneWidget);
 
-      // Небольшая пауза для загрузки
+      // Wait for loading
       await tester.pumpAndSettle(const Duration(seconds: 2));
     });
 
     testWidgets('WebView is displayed', (WidgetTester tester) async {
       await tester.pumpWidget(const FMSGoApp());
       
-      // Проверить наличие WebViewWidget
+      // Check WebViewWidget
       expect(find.byType(Scaffold), findsOneWidget);
       
       await tester.pumpAndSettle();
@@ -30,7 +30,7 @@ void main() {
     testWidgets('App title is correct', (WidgetTester tester) async {
       await tester.pumpWidget(const FMSGoApp());
 
-      // Проверить заголовок приложения
+      // Check app title
       final materialApp = find.byType(MaterialApp);
       expect(materialApp, findsOneWidget);
 
@@ -39,15 +39,13 @@ void main() {
 
     testWidgets('Renders correctly on different screen sizes', 
       (WidgetTester tester) async {
-      // Тестирование на мобильном разрешении
-      addTearDown(tester.binding.window.physicalSizeTestValue = Size.zero);
-      addTearDown(
-        tester.binding.window.devicePixelRatioTestValue = 1.0,
-      );
+      addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
 
-      // Установить размер экрана (iPhone 12)
+      // Set screen size (iPhone 12)
       tester.binding.window.physicalSizeTestValue = const Size(390, 844);
-      tester.binding.window.devicePixelRatioTestValue = 3.0;
+      addTearDown(() {
+        tester.binding.window.physicalSizeTestValue = Size.zero;
+      });
 
       await tester.pumpWidget(const FMSGoApp());
       expect(find.byType(Scaffold), findsOneWidget);
@@ -57,14 +55,13 @@ void main() {
 
     testWidgets('App handles landscape orientation', 
       (WidgetTester tester) async {
-      addTearDown(tester.binding.window.physicalSizeTestValue = Size.zero);
-      addTearDown(
-        tester.binding.window.devicePixelRatioTestValue = 1.0,
-      );
+      addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
 
-      // Установить landscape режим
+      // Set landscape mode
       tester.binding.window.physicalSizeTestValue = const Size(844, 390);
-      tester.binding.window.devicePixelRatioTestValue = 3.0;
+      addTearDown(() {
+        tester.binding.window.physicalSizeTestValue = Size.zero;
+      });
 
       await tester.pumpWidget(const FMSGoApp());
       expect(find.byType(Scaffold), findsOneWidget);

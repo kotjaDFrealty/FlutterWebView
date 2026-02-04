@@ -7,23 +7,23 @@ void main() {
 
   group('FMS Go App - Integration Tests', () {
     testWidgets('Full app lifecycle test', (WidgetTester tester) async {
-      // Запустить приложение
+      // Launch application
       await tester.pumpWidget(const FMSGoApp());
 
-      // Проверить начальное состояние
+      // Check initial state
       expect(find.byType(FMSGoApp), findsOneWidget);
 
-      // Дождаться полной загрузки
+      // Wait for full loading
       await tester.pumpAndSettle(const Duration(seconds: 5));
 
-      // Проверить, что интерфейс готов
+      // Check UI is ready
       expect(find.byType(Scaffold), findsOneWidget);
     });
 
     testWidgets('App remains responsive', (WidgetTester tester) async {
       await tester.pumpWidget(const FMSGoApp());
 
-      // Проверить, что приложение не зависает при нескольких пакетах
+      // Check app does not freeze on multiple pumps
       for (int i = 0; i < 5; i++) {
         await tester.pump(const Duration(milliseconds: 500));
       }
@@ -33,28 +33,22 @@ void main() {
 
     testWidgets('Multiple orientation changes', 
       (WidgetTester tester) async {
-      addTearDown(tester.binding.window.physicalSizeTestValue = Size.zero);
-      addTearDown(
-        tester.binding.window.devicePixelRatioTestValue = 1.0,
-      );
+      addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
 
       await tester.pumpWidget(const FMSGoApp());
 
       // Portrait
       tester.binding.window.physicalSizeTestValue = const Size(390, 844);
-      addTearDown(tester.binding.window.physicalSizeTestValue = Size.zero);
       await tester.pumpAndSettle();
       expect(find.byType(Scaffold), findsOneWidget);
 
       // Landscape
       tester.binding.window.physicalSizeTestValue = const Size(844, 390);
-      addTearDown(tester.binding.window.physicalSizeTestValue = Size.zero);
       await tester.pumpAndSettle();
       expect(find.byType(Scaffold), findsOneWidget);
 
       // Portrait again
       tester.binding.window.physicalSizeTestValue = const Size(390, 844);
-      addTearDown(tester.binding.window.physicalSizeTestValue = Size.zero);
       await tester.pumpAndSettle();
       expect(find.byType(Scaffold), findsOneWidget);
     });
@@ -64,7 +58,7 @@ void main() {
       await tester.pumpWidget(const FMSGoApp());
       await tester.pumpAndSettle(const Duration(seconds: 2));
 
-      // Имитировать быстрые взаимодействия пользователя
+      // Simulate rapid user interactions
       for (int i = 0; i < 10; i++) {
         await tester.pump(const Duration(milliseconds: 100));
       }
