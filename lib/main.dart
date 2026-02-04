@@ -55,6 +55,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(Colors.white)
+      ..setUserAgent('Mozilla/5.0 (Linux; Android 13; SM-A505F) AppleWebKit/537.36')
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {
@@ -78,12 +79,12 @@ class _WebViewScreenState extends State<WebViewScreen> {
             debugPrint('WebView error: ${error.description}');
           },
           onNavigationRequest: (NavigationRequest request) {
-            // –азрешаем навигацию только внутри домена
+            // Allow navigation within the domain
             if (request.url.startsWith('https://beta.fms-go.com') ||
-                request.url.startsWith('https://fms-go.com')) {
+                request.url.startsWith('https://fms-go.com') ||
+                request.url.startsWith('https://accounts.google.com')) {
               return NavigationDecision.navigate;
             }
-            // ƒл€ внешних ссылок можно открыть в браузере
             return NavigationDecision.navigate;
           },
         ),
