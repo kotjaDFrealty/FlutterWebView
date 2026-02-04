@@ -43,7 +43,7 @@ class WebViewScreen extends StatefulWidget {
 class _WebViewScreenState extends State<WebViewScreen> {
   late final WebViewController _controller;
   bool _isLoading = true;
-  String _url = 'https://beta.fms-go.com';
+  String _url = 'https://fms-go.com';
 
   @override
   void initState() {
@@ -80,8 +80,8 @@ class _WebViewScreenState extends State<WebViewScreen> {
           },
           onNavigationRequest: (NavigationRequest request) {
             // Allow navigation within the domain
-            if (request.url.startsWith('https://beta.fms-go.com') ||
-                request.url.startsWith('https://fms-go.com') ||
+            if (request.url.startsWith('https://fms-go.com') ||
+              request.url.startsWith('https://www.fms-go.com') ||
                 request.url.startsWith('https://accounts.google.com')) {
               return NavigationDecision.navigate;
             }
